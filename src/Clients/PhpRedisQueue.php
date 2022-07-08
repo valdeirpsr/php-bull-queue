@@ -19,7 +19,21 @@ class PhpRedisQueue implements RedisQueue
             $this->client = new Redis();
 
             $this->client->connect($config->host, $config->port);
-            $this->client->auth($config->password);
+
+            $auth = [];
+
+            if ($config->username && $config->password) {
+                $auth = [
+                    'user' => $config->username,
+                    'pass' => $config->password,
+                ];
+            } elseif ($config->password) {
+                $auth['pass'] = $config->password;
+            }
+
+            if (!empty($auth)) {
+                $this->client->auth($auth);
+            }
         }
     }
 
