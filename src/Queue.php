@@ -20,7 +20,7 @@ class Queue
 
     private QueueOpts $opts;
 
-    public function __construct(string $name, QueueOpts $opts = null)
+    public function __construct(string $name, ?QueueOpts $opts = null)
     {
         $this->name = $name;
         $this->opts = $opts ?: new QueueOpts();
@@ -34,7 +34,7 @@ class Queue
      * @param JobOpts|null $opts
      * @return mixed
      */
-    public function add(string $name, array $data, JobOpts $opts = null)
+    public function add(string $name, array $data, ?JobOpts $opts = null)
     {
         $timestamp = (int) round(microtime(true) * 1000);
 

@@ -11,7 +11,7 @@ class PhpRedisQueue implements RedisQueue
 {
     protected Redis $client;
 
-    public function __construct(RedisConfig $config, Redis $redis = null)
+    public function __construct(RedisConfig $config, ?Redis $redis = null)
     {
         if (!is_null($redis)) {
             $this->client = $redis;
